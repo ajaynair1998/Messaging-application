@@ -2,11 +2,14 @@ const mongoose = require("mongoose");
 const { userSchema } = require("./User");
 
 const messageSchema = new mongoose.Schema({
-  room: room,
-  from: { type: userSchema },
-  to: { type: userSchema },
+  from: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
+  to: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
   message_body: String,
-  forwarded: { state: Boolean, originalMessage: message },
+  forwarded: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "messages",
+    default: false,
+  },
   created_at: { type: Date, default: Date.now },
 });
 
