@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 const { User } = require("../../models/User");
 const Message = require("../../models/Message");
+require("dotenv").config();
 
 class ConnectionToDatabase {
   constructor() {
-    const uri =
-      "mongodb+srv://chatAppAdmin:testUser@cluster0.tc816.mongodb.net/chat-app?retryWrites=true&w=majority";
-    this.connectionSuccessfull = mongoose.connect(uri, {
+    this.connectionSuccessfull = mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
