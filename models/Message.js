@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-const { userSchema } = require("./User");
+const { User } = require("./User");
 
 const messageSchema = new mongoose.Schema({
-  from: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
-  to: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
+  from: { type: mongoose.SchemaTypes.ObjectId, ref: "user" },
+  to: { type: mongoose.SchemaTypes.ObjectId, ref: "user" },
   message_body: String,
   forwarded: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "messages",
-    default: false,
+    ref: "message",
+    default: null,
   },
   created_at: { type: Date, default: Date.now },
 });

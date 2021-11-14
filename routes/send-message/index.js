@@ -4,13 +4,18 @@ const router = express.Router();
 let ConnectionToDatabase = require("../../services/Connection");
 let db = new ConnectionToDatabase();
 
-// log-in route
+// send-message route
 router.post("/", async (req, res) => {
   try {
-    let { username, email, password } = req.body;
-    let isSuccessfull = await db.findUser(username, password);
+    let { from, to, message_body, forwarded } = req.body;
+    let isSuccessfull = await db.sendMessageToAnotherUser(
+      from,
+      to,
+      message_body,
+      forwarded
+    );
     isSuccessfull
-      ? res.status(200).json({ success: true, user: { id: isSuccessfull._id } })
+      ? res.status(200).json({ success: true })
       : res.status(500).json({ success: false });
   } catch (err) {
     console.log(err);

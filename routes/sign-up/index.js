@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-let ConnectionToDatabase = require("../../utils/Connection");
+let ConnectionToDatabase = require("../../services/Connection");
 let db = new ConnectionToDatabase();
 
 // sign-up route
